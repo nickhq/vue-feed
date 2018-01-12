@@ -1,5 +1,5 @@
 <template>
-    <div class="horizontal-feed">
+    <div class="horizontal-feed" v-show="show">
         <div class="header">
             <span v-text="header"></span>
         </div>
@@ -44,6 +44,39 @@ export default {
             type: [Array, String],
             required: true
         }
-    }
+    },
+    data(){
+        return {
+            items: [],
+            max: 0,
+            show: false
+        }
+    },
+    mounted(){
+        if (ths.duration <= 2000) {
+            throw new Error('Duration must be higher than 2000ms')
+        }
+
+        if(typeof this.collection === 'string'){
+
+        }else {
+            this.items = this.collection;
+            this.initialise()
+        }
+    },
+    methods: {
+        initialise(){
+            if (this.items.length === 0) {
+                return;
+            }
+
+            this.max = this.items.length - 1;
+            this.show = true;
+            this.swap();
+        },
+        swap(){
+            
+        }
+    },
 }
 </script>
