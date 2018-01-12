@@ -1,7 +1,7 @@
 <template>
     <div class="horizontal-feed">
         <div class="header">
-            <span>Header</span>
+            <span v-text="header"></span>
         </div>
         <div class="body">
             <div>
@@ -30,6 +30,20 @@
 
 <script>
 export default {
-
+    props: {
+        duration: {
+            type: Number,
+            required: false,
+            default: 7000,
+        },
+        header: {
+            type: String,
+            required: true,
+        },
+        collection: {
+            type: [Array, String],
+            required: true
+        }
+    }
 }
 </script>
