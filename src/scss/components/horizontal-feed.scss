@@ -45,6 +45,9 @@
             }
             a {
                 color: $feed-anchor-color;
+                span {
+                    color: $feed-color;
+                }
             }
         }
         .cover {
@@ -67,20 +70,17 @@
             padding-left: 0.8rem;
         }
     }
-
-    .buttons{
+    .buttons {
         background-color: $feed-button-bg;
-
         &::before,
-        &::after{
+        &::after {
             content: '';
             display: block;
             clear: both;
         }
-
         .previous,
         .play,
-        .next{
+        .next {
             display: block;
             cursor: pointer;
             width: 33.333%;
@@ -89,16 +89,43 @@
             color: $feed-button-color;
             float: left;
         }
-
-        .previous, 
-        .play{
-            border-right: solid 1px lighten($feed-button-bg,  7%)
+        .previous,
+        .play {
+            border-right: solid 1px lighten($feed-button-bg, 7%)
         }
-
-        .play{
-            &:not(.active){
+        .play {
+            &:not(.active) {
                 opacity: 0.5;
                 cursor: default;
+            }
+        }
+    }
+}
+
+@media all and(min-width: 1024px) {
+    .horizontal-feed {
+        display: flex;
+        align-items: stretch;
+        position: relative;
+        .header {
+            display: inline-block;
+        }
+        .body {
+            padding-right: 9rem;
+            .cover {
+                width: 10.2rem;
+            }
+        }
+        .buttons {
+            display: flex;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 10;
+            .previous,
+            .play,
+            .next {
+                width: 3rem;
             }
         }
     }
