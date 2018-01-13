@@ -3,7 +3,9 @@
         <div class="header">
             <span v-text="header"></span>
         </div>
-        <div class="body" v-bind:class="swappingClass">
+        <div class="body" v-bind:class="swappingClass"
+        v-on:mouseover="pause()"
+        v-on:mouseout="resume()">
             <div>
                 <p v-for="(item, index) in items"
                     v-bind:class="activeClass(index)"
@@ -107,24 +109,30 @@ export default {
             }
         },
         swap(){
-            this.interval == window.setInterval(function() {
+            this.interval == window.setInterval(() => {
                 if(!this.paused){
                     this.nextSlide()
                 }
-            }.bind(this), this.duration)
+            }, this.duration)
         },
         nextSlide(){
             this.swapping = true
-            window.setTimeout(function(){
+            window.setTimeout(() =>{
                 this.current = this.next()
                 this.swapping = false
-            }.bind(this), 1000)
+            }, 1000)
         },
         next(){
             if (this.current === this.max) {
                 return 0
             }
             return this.current + 1;
+        },
+        pause(){
+            this.paused = true
+        },
+        resume(){
+            this.paused = false
         }
     },
 }
