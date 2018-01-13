@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "href":"https://medium.com/the-vue-point/vue-2-5-released-14bd65bf030b",
+        "title": "Vue 2.5 released",
+        "body": "We are excited to announce the release of Vue 2.5 Level E! This release includes improvements of various features"
+    },
+    {
+        "href": "https://laravel-news.com/laravel-5-5-router-view-and-redirect",
+        "title": "New Route Methods introduced in Laravel 5.5",
+        "body": "A convenient shortcuts to the Laravel Router class that eliminates the need for creating a controller or closure only to return a simple view or redirect"
+    },
+    {
+        "href": "https://headwayapp.co/adonisjs-changelog/lucid-4.1.0-43097",
+        "title": "Lucid 4.1.0 Breaking Change",
+        "body": "A minor release of Lucid from 4.0.25 to 4.1.0 has been published and contains breaking changes."
+    },
+    {
+        "href": "https://bulma.io/2017/11/14/bulma-is-on-patreon/",
+        "title": "Bulma is on Patreon!",
+        "body": "This will allow people to easily support Bulma, and ensure its future development."
+    }
+]
