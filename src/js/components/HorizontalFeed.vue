@@ -5,10 +5,10 @@
         </div>
         <div class="body">
             <div>
-                <p>
-                    <a href="#">Title
-                        <span>Content</span>
-                    </a>
+                <p v-for="(item, index) in items"
+                    v-bind:class="activeClass(index)"
+                >
+                    <a v-bind:href="item.href">{{ item.title }}&nbsp;<span>{{ item.body }}</span></a>
                 </p>
             </div>
             <div class="cover"></div>
@@ -49,7 +49,8 @@ export default {
         return {
             items: [],
             max: 0,
-            show: false
+            show: false,
+            current: 0
         }
     },
     mounted(){
@@ -92,6 +93,11 @@ export default {
         },
         swap(){
             
+        },
+        activeClass(index){
+            return {
+                'active' : index === this.current
+            }
         }
     },
 }
