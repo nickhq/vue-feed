@@ -53,12 +53,12 @@ export default {
         }
     },
     mounted(){
-        if (ths.duration <= 2000) {
+        if (this.duration <= 2000) {
             throw new Error('Duration must be higher than 2000ms')
         }
 
         if(typeof this.collection === 'string'){
-
+            this.getItems()
         }else {
             this.items = this.collection;
             this.initialise()
@@ -73,6 +73,22 @@ export default {
             this.max = this.items.length - 1;
             this.show = true;
             this.swap();
+        },
+        getItems(){
+            if(this.collection === ''){
+                throw new Error('Invalid Endpoint')
+            }
+
+            window.axios.get(this.collection)
+                .then(this.fetchSuccess)
+                .catch(this.fetchError)
+        },
+        fetchSuccess(response){
+            this.items = response.data;
+            this.initialise();
+        },
+        fetchError(error){
+            throw new Error(error)
         },
         swap(){
             
