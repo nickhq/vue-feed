@@ -3,7 +3,7 @@
         <div class="header">
             <span v-text="header"></span>
         </div>
-        <div class="body">
+        <div class="body" v-bind:class="swappingClass">
             <div>
                 <p v-for="(item, index) in items"
                     v-bind:class="activeClass(index)"
@@ -50,7 +50,17 @@ export default {
             items: [],
             max: 0,
             show: false,
-            current: 0
+            current: 0,
+            interval: null,
+            paused: false,
+            swapping: false,
+        }
+    },
+    computed: {
+        swappingClass(){
+            return {
+                'swapping': this.swapping
+            }
         }
     },
     mounted(){
@@ -91,13 +101,30 @@ export default {
         fetchError(error){
             throw new Error(error)
         },
-        swap(){
-            
-        },
         activeClass(index){
             return {
                 'active' : index === this.current
             }
+        },
+        swap(){
+            this.interval == window.setInterval(function() {
+                if(!this.paused){
+                    this.nextSlide()
+                }
+            }.bind(this), this.duration)
+        },
+        nextSlide(){
+            this.swapping = true
+            window.setTimeout(function(){
+                this.current = this.next()
+                this.swapping = false
+            }.bind(this), 1000)
+        },
+        next(){
+            if (this.current === this.max) {
+                return 0
+            }
+            return this.current + 1;
         }
     },
 }

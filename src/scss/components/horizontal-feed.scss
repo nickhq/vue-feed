@@ -58,7 +58,8 @@
             position: absolute;
             top: 0;
             right: 0;
-            transition: all 0.3sec;
+            background-color: $feed-bg;
+            transition: all 0.3s linear;
             &::after {
                 content: "_";
                 display: block;
@@ -66,8 +67,10 @@
             }
         }
         &.swapping {
-            width: 100%;
-            padding-left: 0.8rem;
+            .cover {
+                width: 100%;
+                padding-left: 0.8rem;
+            }
         }
     }
     .buttons {
