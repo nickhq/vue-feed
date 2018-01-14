@@ -7,16 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VueJs Feed</title>
     <link rel="stylesheet" href="dist/app.css">
+
+    <meta name="twitter:card" content="A horizontal news feed using VueJs and Sass" />
+    <meta name="twitter:site" content="@nickhq6" />
+    <meta name="twitter:creator" content="@nickhq6" />
+    <meta property="og:url" content="https://nickhq.github.io/vue-feed/" />
+    <meta property="og:title" content="VueJs horizontal news feed" />
+    <meta property="og:description" content="A open source horizontal news feed made with vueJs and styled with sass(SCSS), i learn to make this with help from skillshare.com."
+    />
+    <meta property="og:image" content="https://nickhq.github.io/vue-feed/screenshot.png"
+    />
 </head>
 
 <body>
     <div id="app">
         <div class="row">
-           <horizontal-feed
-               header="Breaking news"
-               v-bind:duration="5000"
-               v-bind:collection="'./data.json'">
-           </horizontal-feed>
+            <horizontal-feed header="Breaking news" v-bind:duration="5000" v-bind:collection="'./data.json'">
+            </horizontal-feed>
         </div>
     </div>
 
