@@ -16,13 +16,14 @@
             <div class="cover"></div>
         </div>
         <div class="buttons">
-            <span class="previous">
+            <span class="previous" v-on:click="goPrevious()">
                 <i class="fa fa-angle-left"></i>
             </span>
-            <span class="play">
+            <span class="play" v-on:click="play()"
+                v-bind:class="playClass">
                 <i class="fa fa-play"></i>
             </span>
-            <span class="next">
+            <span class="next" v-on:click="goNext()">
                 <i class="fa fa-angle-right"></i>
             </span>
         </div>
@@ -62,6 +63,11 @@ export default {
         swappingClass(){
             return {
                 'swapping': this.swapping
+            }
+        },
+        playClass(){
+            return {
+                'active' : !this.interval
             }
         }
     },
@@ -109,18 +115,21 @@ export default {
             }
         },
         swap(){
-            this.interval == window.setInterval(() => {
+            this.interval = window.setInterval(() => {
                 if(!this.paused){
                     this.nextSlide()
                 }
             }, this.duration)
         },
-        nextSlide(){
+        progress(direction){
             this.swapping = true
             window.setTimeout(() =>{
                 this.current = this.next()
                 this.swapping = false
             }, 1000)
+        },
+         nextSlide(){
+            this.progress('next')
         },
         next(){
             if (this.current === this.max) {
@@ -128,11 +137,38 @@ export default {
             }
             return this.current + 1;
         },
+        previousSlide(){
+            this.progress('previous')
+        },
+        previous(){
+            if (this.current === 0) {
+                return this.max
+            }
+            return this.current - 1
+        },
+        goPrevious(){
+           this.stop()
+           this.previousSlide()
+        },
+        goNext(){
+            this.stop()
+            this.nextSlide()
+        },
+        stop(){
+             window.clearInterval(this.interval)
+            this.interval = null
+        },
         pause(){
             this.paused = true
         },
         resume(){
             this.paused = false
+        },
+        play(){
+            if(this.interval){
+                return
+            }
+            this.swap()
         }
     },
 }
